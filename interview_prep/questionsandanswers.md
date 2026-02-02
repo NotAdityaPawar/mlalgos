@@ -1,37 +1,127 @@
 AI Engineering Interview Questions (2–4 years experience)
-Python Programming and Scripting
 
-Is Python a compiled language or an interpreted language?
+## Python Programming and Scripting
 
-How can you concatenate two lists in Python?
+**Is Python a compiled language or an interpreted language?**
+Python is an interpreted language. The source code is compiled to bytecode (.pyc files) at runtime, then executed by the Python Virtual Machine (PVM). This makes it platform-independent but slower than compiled languages.
 
-What is the difference between for and while loops in Python?
+**How can you concatenate two lists in Python?**
+```python
+# Method 1: + operator
+list1 + list2
+# Method 2: extend()
+list1.extend(list2)
+# Method 3: unpacking
+[*list1, *list2]
+# Method 4: itertools.chain
+list(itertools.chain(list1, list2))
+```
 
-How do you floor a number in Python?
+**What is the difference between for and while loops in Python?**
+- **for loop**: Iterates over sequences (lists, strings, ranges). Used when you know the number of iterations.
+- **while loop**: Continues until a condition becomes False. Used when the number of iterations is unknown.
 
-What is the difference between / and // division operators in Python?
+**How do you floor a number in Python?**
+```python
+import math
+math.floor(4.7)  # Returns 4
+# Or use // operator for integer division
+4.7 // 1  # Returns 4.0
+```
 
-Is indentation required in Python? Why?
+**What is the difference between / and // division operators in Python?**
+- `/`: True division, returns float result (5/2 = 2.5)
+- `//`: Floor division, returns integer result (5//2 = 2)
 
-Can you pass a function as an argument to another function in Python?
+**Is indentation required in Python? Why?**
+Yes, indentation is mandatory in Python. It defines code blocks and scope, replacing braces {} used in other languages. This enforces readable code structure.
 
-What does it mean that Python is a dynamically typed language?
+**Can you pass a function as an argument to another function in Python?**
+Yes, functions are first-class objects in Python:
+```python
+def apply_func(func, value):
+    return func(value)
 
-What is the pass statement in Python and when would you use it?
+apply_func(len, "hello")  # Returns 5
+```
 
-How are arguments passed in Python (by value, reference, or otherwise)?
+**What does it mean that Python is a dynamically typed language?**
+Variable types are determined at runtime, not compile time. You don't need to declare variable types explicitly:
+```python
+x = 5      # x is int
+x = "hello" # x is now string
+```
 
-What is a lambda (anonymous) function in Python?
+**What is the pass statement in Python and when would you use it?**
+`pass` is a null operation placeholder. Used when syntax requires a statement but no action is needed:
+```python
+class EmptyClass:
+    pass  # Placeholder for future implementation
+```
 
-What is list comprehension in Python? Give an example.
+**How are arguments passed in Python (by value, reference, or otherwise)?**
+Python uses "pass by object reference". Immutable objects (int, string, tuple) behave like pass-by-value, while mutable objects (list, dict) behave like pass-by-reference.
 
-What are *args and **kwargs in Python functions?
+**What is a lambda (anonymous) function in Python?**
+A lambda is a small anonymous function defined inline:
+```python
+square = lambda x: x**2
+# Equivalent to:
+def square(x):
+    return x**2
+```
 
-What are Python decorators and how are they used?
+**What is list comprehension in Python? Give an example.**
+A concise way to create lists:
+```python
+# Traditional approach
+squares = []
+for x in range(10):
+    squares.append(x**2)
 
-What is an iterator in Python?
+# List comprehension
+squares = [x**2 for x in range(10)]
+```
 
-What is a generator in Python?
+**What are *args and **kwargs in Python functions?**
+- `*args`: Accepts variable number of positional arguments as tuple
+- `**kwargs`: Accepts variable number of keyword arguments as dictionary
+```python
+def func(*args, **kwargs):
+    print(args)    # (1, 2, 3)
+    print(kwargs)  # {'a': 4, 'b': 5}
+
+func(1, 2, 3, a=4, b=5)
+```
+
+**What are Python decorators and how are they used?**
+Decorators modify or extend function behavior without changing the function itself:
+```python
+def timer(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        print(f"Time: {time.time() - start}")
+        return result
+    return wrapper
+
+@timer
+def slow_function():
+    time.sleep(1)
+```
+
+**What is an iterator in Python?**
+An object that implements `__iter__()` and `__next__()` methods, allowing iteration through elements one at a time.
+
+**What is a generator in Python?**
+A function that uses `yield` to return values lazily, creating an iterator that generates values on-demand, saving memory:
+```python
+def fibonacci():
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
+```
 
 Machine Learning Algorithms and Implementation
 
