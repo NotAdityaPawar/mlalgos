@@ -30,4 +30,9 @@ def calculateTFIDF(docs: list):
 
 
 docs = ["the cat sat", "the dog barked", "the cat chased the dog"]
-print(calculateTFIDF(docs))
+res = print(calculateTFIDF(docs))
+print(res)
+
+# [{'cat': 0.13515503603605478, 'sat': 0.3662040962227032, 'the': 0.0}, 
+# {'dog': 0.13515503603605478, 'the': 0.0, 'barked': 0.3662040962227032}, 
+# {'cat': 0.08109302162163289, 'chased': 0.21972245773362198, 'dog': 0.08109302162163289, 'the': 0.0}]
